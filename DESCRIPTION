@@ -20,3 +20,4 @@ Imports:
     glue,
 License: MIT + file LICENSE
 Suggests: testthat (>= 2.1.0)
+URL: https://a2-ai.github.io/pkgpub/
