@@ -1,7 +1,7 @@
 Package: pkgpub
 Type: Package
 Title: Publish Packages
-Version: 0.3.0
+Version: 0.3.0.9000
 Description: Publish packages to cran-like repos.
 Encoding: UTF-8
 Authors@R: 
@@ -19,5 +19,7 @@ Imports:
     gert,
     glue,
 License: MIT + file LICENSE
-Suggests: testthat (>= 2.1.0)
+Suggests: 
+    testthat (>= 3.0.0)
 URL: https://a2-ai.github.io/pkgpub/
+Config/testthat/edition: 3

@@ -27,5 +27,5 @@ current_commit_tag <- function() {
     message('detected more than one tag, removing possible `latest` before proceeding')
     tag <- tag[tag != "latest"]
   }
-  return(tag)
+  return(tag[1])
 }

@@ -1,4 +1,4 @@
-modify_desc <- function(.d, meta, loc, overwrite = TRUE) {
+modify_desc <- function(.d, meta, loc, overwrite = TRUE, ..., remove_remotes = FALSE) {
   if (!inherits(.d, "description")) {
     stop("must pass a desc object to modify_desc")
   }
@@ -10,6 +10,9 @@ modify_desc <- function(.d, meta, loc, overwrite = TRUE) {
     d__$set(.f, meta[[.f]])
     return(.f)
   })
+  if (remove_remotes) {
+    d__$del("Remotes")
+  }
   if (is.na(d__$get("Repository"))) {
     stop("package must have a `Repository` field set", call. = FALSE)
   }
@@ -28,6 +31,7 @@ modify_desc <- function(.d, meta, loc, overwrite = TRUE) {
 #' TRUE inspects the pkg folder as a git repo, also may provide a character or numeric
 #' value to append
 #' @param overwrite overwrite fields already present when adding fields
+#' @param remove_remotes delete the remotes field
 #' @param ... parameters to pass to pkgbuild
 #' @details
 #' supplementing version can be done whenever a build occurs that does not
@@ -35,6 +39,10 @@ modify_desc <- function(.d, meta, loc, overwrite = TRUE) {
 #' about the git hash (if available), as well as incrememnt the version number
 #' with a unix timestamp that corresponds to the last git hash (if present) or
 #' the current system time, if git is not present and no version timestamp is provided.
+#' 
+#' removing the remotes field can be helpful when dealing with consolidated package installs
+#' where all packages are available in a single repository. For example, pulling
+#' everything into a posit package manager mirror.
 #' @importFrom stats setNames
 #' @importFrom utils modifyList
 #' @export
@@ -45,7 +53,9 @@ build_pkg <- function(.pkgdir = ".",
                        addl_meta = NULL,
                        supplement_version = FALSE,
                        overwrite = TRUE,
-                      ...) {
+                       remove_remotes = FALSE,
+                      ...
+                      ) {
   withr::with_dir(.pkgdir, {
     pkg_desc <- file.path(.pkgdir, "DESCRIPTION")
     d__ <- desc::desc(pkg_desc)

@@ -4,12 +4,16 @@
 \alias{insert_packages}
 \title{insert packages into a drat repo}
 \usage{
-insert_packages(pkgs, repository)
+insert_packages(pkgs, repository, archive = TRUE, ...)
 }
 \arguments{
 \item{pkgs}{list of packages to insert}
 
 \item{repository}{repository folder to insert}
+
+\item{archive}{whether to archive the packages after insertion to prevent duplicates}
+
+\item{...}{parameters passed to `drat::archivePackages`}
 }
 \description{
 insert packages into a drat repo
