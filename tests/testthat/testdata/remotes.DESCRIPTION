@@ -1,0 +1,20 @@
+Package: test
+Type: Package
+Title: fake pkg
+Version: 0.3.0.9000
+Description: fake description
+Encoding: UTF-8
+Authors@R: 
+    person(given = "Devin",
+           family = "Pastoor",
+           role = c("aut", "cre"),
+           email = "devin.pastoor@gmail.com")
+RoxygenNote: 7.3.2
+Imports: 
+    magrittr,
+    gt
+License: MIT + file LICENSE
+Suggests: testthat (>= 2.1.0)
+Repository: testrepo
+Remotes:
+    rstudio/gt#4
