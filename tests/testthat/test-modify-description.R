@@ -5,7 +5,7 @@ test_that("modify description will delete a remotes field if requested", {
   expect_equal(d$get_remotes(), character(0))
   output_file <- tempfile()
   modify_desc(d, list(Repository = "test"), output_file) 
-  expect_snapshot_file(output_file, "simple.DESCRIPTION")
+  expect_snapshot_file(output_file, "simple.txt")
 })
 
 test_that("modify description will delete a remotes field if requested", {
@@ -15,7 +15,7 @@ test_that("modify description will delete a remotes field if requested", {
   expect_equal(d$get_remotes(), "rstudio/gt#4")
   output_file <- tempfile()
   modify_desc(d, list(), output_file, remove_remotes = TRUE) 
-  expect_snapshot_file(output_file, "remove-remote.DESCRIPTION")
+  expect_snapshot_file(output_file, "remove-remote.txt")
   # description should remove the remotes field if it was present and everything
   # else should be unchanged
 })
