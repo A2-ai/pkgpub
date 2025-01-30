@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">pkgpub</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,6 +45,7 @@
 <span>  addl_meta <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  supplement_version <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  overwrite <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  remove_remotes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -83,6 +84,10 @@ value to append</p></dd>
 <dd><p>overwrite fields already present when adding fields</p></dd>
 
 
+<dt id="arg-remove-remotes">remove_remotes<a class="anchor" aria-label="anchor" href="#arg-remove-remotes"></a></dt>
+<dd><p>delete the remotes field</p></dd>
+
+
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>parameters to pass to pkgbuild</p></dd>
 
@@ -94,6 +99,9 @@ correspond to a formal release/tag. This will automatically add information
 about the git hash (if available), as well as incrememnt the version number
 with a unix timestamp that corresponds to the last git hash (if present) or
 the current system time, if git is not present and no version timestamp is provided.</p>
+<p>removing the remotes field can be helpful when dealing with consolidated package installs
+where all packages are available in a single repository. For example, pulling
+everything into a posit package manager mirror.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
