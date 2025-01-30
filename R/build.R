@@ -76,7 +76,7 @@ build_pkg <- function(.pkgdir = ".",
       hs$Version <- sprintf("%s.%s", version, hs$timestamp)
       meta <- modifyList(meta, hs)
     }
-    modify_desc(d__, drop_nulls(meta), loc = pkg_desc, overwrite = overwrite)
+    modify_desc(d__, drop_nulls(meta), loc = pkg_desc, overwrite = overwrite, remove_remotes = remove_remotes)
     on.exit({
       # d__ should be unchanged
       d__$write(pkg_desc)
