@@ -4,12 +4,14 @@
 \alias{create_tagged_repo}
 \title{create a cranlike repo that contains the tagged package}
 \usage{
-create_tagged_repo(.dir, repo_name = "pkgpub")
+create_tagged_repo(.dir, repo_name = "pkgpub", ...)
 }
 \arguments{
 \item{.dir}{directory to create the repo in}
 
 \item{repo_name}{repository name to specify in the description}
+
+\item{...}{additional arguments passed to build_pkg}
 }
 \description{
 create a cranlike repo that contains the tagged package
