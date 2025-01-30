@@ -13,9 +13,7 @@ modify_desc <- function(.d, meta, loc, overwrite = TRUE, ..., remove_remotes = F
   if (remove_remotes) {
     d__$del("Remotes")
   }
-  if (is.na(d__$get("Repository"))) {
-    stop("package must have a `Repository` field set", call. = FALSE)
-  }
+ 
   d__$write(loc)
   return(fields_set)
 }
@@ -59,7 +57,14 @@ build_pkg <- function(.pkgdir = ".",
   withr::with_dir(.pkgdir, {
     pkg_desc <- file.path(.pkgdir, "DESCRIPTION")
     d__ <- desc::desc(pkg_desc)
-    meta <- list(Repository = repository, Origin = origin)
+    meta <- list(Origin = origin)
+    
+    # if the repository is not set, check if one already exists
+    if (is.null(repository) && is.na(d__$get("Repository"))) {
+      stop("package must have a `Repository` field set", call. = FALSE)
+    } else {
+      meta$Repository <- repository
+    }
     if (!is.null(addl_meta)) {
       meta <- modifyList(meta, addl_meta)
     }
@@ -70,7 +75,7 @@ build_pkg <- function(.pkgdir = ".",
         Version = sprintf("%s.%s", version, supplement_version)
       )
       meta <- modifyList(meta, sv)
-    } else if (supplement_version) {
+    } else if (isTRUE(supplement_version)) {
       hs <- hashstamp()
       version <- d__$get_version()
       hs$Version <- sprintf("%s.%s", version, hs$timestamp)

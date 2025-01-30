@@ -12,6 +12,7 @@ build_pkg(
   addl_meta = NULL,
   supplement_version = FALSE,
   overwrite = TRUE,
+  remove_remotes = FALSE,
   ...
 )
 }
@@ -32,6 +33,8 @@ value to append}
 
 \item{overwrite}{overwrite fields already present when adding fields}
 
+\item{remove_remotes}{delete the remotes field}
+
 \item{...}{parameters to pass to pkgbuild}
 }
 \description{
@@ -43,4 +46,8 @@ correspond to a formal release/tag. This will automatically add information
 about the git hash (if available), as well as incrememnt the version number
 with a unix timestamp that corresponds to the last git hash (if present) or
 the current system time, if git is not present and no version timestamp is provided.
+
+removing the remotes field can be helpful when dealing with consolidated package installs
+where all packages are available in a single repository. For example, pulling
+everything into a posit package manager mirror.
 }
