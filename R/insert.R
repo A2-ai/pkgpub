@@ -2,7 +2,7 @@
 #' @param pkgs list of packages to insert
 #' @param repository repository folder to insert
 #' @param archive whether to archive the packages after insertion to prevent duplicates
-#' @param OSflavour optional OS flavour specification, defaults to NULL unless detected as aarch64
+#' @param os_flavor optional os_flavor specification, defaults to NULL unless detected as aarch64
 #' @param ... parameters passed to `drat::archivePackages`
 #' @details
 #' repository folder should most likely correspond to the name
@@ -10,20 +10,20 @@
 #' realistically, the time that they need to match when
 #' repos is set in a user session in the `getOption('repos')` field
 #' @export
-insert_packages <- function(pkgs, repository, archive = TRUE, OSflavour = NULL, ...) {
+insert_packages <- function(pkgs, repository, archive = TRUE, ..., os_flavor = NULL) {
 
   # Get system information
   sys_info <- Sys.info()
   arch <- R.version$arch
 
-  # Format OSflavour if not provided
-  if (!is.null(OSflavour)) {
-    # Use the provided OSflavour value
+  # Format os_flavor if not provided
+  if (!is.null(os_flavor)) {
+    # Use the provided os_flavor value
   } else if (arch == "aarch64") {
-    OSflavour <- paste(arch, "apple", tolower(sys_info["sysname"]), 
+    os_flavor <- paste(arch, "apple", tolower(sys_info["sysname"]), 
                     substr(sys_info["release"], 1, 2), sep="-")
   } else {
-    OSflavour <- NULL
+    os_flavor <- NULL
   }
 
   if (!dir.exists(repository)) {
@@ -34,7 +34,7 @@ insert_packages <- function(pkgs, repository, archive = TRUE, OSflavour = NULL, 
       warning("no package exists at ", .p, call. = FALSE)
       return(FALSE)
     }
-    drat::insertPackage(.p, repodir = repository, OSflavour = OSflavour)
+    drat::insertPackage(.p, repodir = repository, OSflavour = os_flavor)
     return(TRUE)
   })
   message(sprintf("successfully added packages:\n %s", paste0(basename(pkgs[unlist(added_pkgs)]), collapse = ",\n ")))
