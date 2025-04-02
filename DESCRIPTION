@@ -4,11 +4,20 @@ Title: Publish Packages
 Version: 0.4.0
 Description: Publish packages to cran-like repos.
 Encoding: UTF-8
-Authors@R: 
+Authors@R: c(
     person(given = "Devin",
            family = "Pastoor",
            role = c("aut", "cre"),
-           email = "devin.pastoor@gmail.com")
+           email = "devin.pastoor@gmail.com"),
+    person(given = "Xu",
+       family = "Fei",
+       role = c("ctb"),
+       email = "xu@a2-ai.com"),
+    person(given = "Elizabeth",
+       family = "Bouton",
+       role = c("ctb"),
+       email = "elizabethb@a2-ai.com"),
+  )
 RoxygenNote: 7.3.2
 Imports: 
     magrittr,
