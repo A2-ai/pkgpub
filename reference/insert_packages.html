@@ -37,7 +37,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">insert_packages</span><span class="op">(</span><span class="va">pkgs</span>, <span class="va">repository</span>, archive <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">insert_packages</span><span class="op">(</span><span class="va">pkgs</span>, <span class="va">repository</span>, archive <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span>, os_flavor <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -58,6 +58,10 @@
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>parameters passed to `drat::archivePackages`</p></dd>
+
+
+<dt id="arg-os-flavor">os_flavor<a class="anchor" aria-label="anchor" href="#arg-os-flavor"></a></dt>
+<dd><p>optional os_flavor specification, defaults to NULL unless detected as aarch64</p></dd>
 
 </dl></div>
     <div class="section level2">
