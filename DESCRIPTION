@@ -1,7 +1,7 @@
 Package: pkgpub
 Type: Package
 Title: Publish Packages
-Version: 0.3.0.9001
+Version: 0.4.0
 Description: Publish packages to cran-like repos.
 Encoding: UTF-8
 Authors@R: 
