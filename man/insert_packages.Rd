@@ -4,7 +4,7 @@
 \alias{insert_packages}
 \title{insert packages into a drat repo}
 \usage{
-insert_packages(pkgs, repository, archive = TRUE, ...)
+insert_packages(pkgs, repository, archive = TRUE, ..., os_flavor = NULL)
 }
 \arguments{
 \item{pkgs}{list of packages to insert}
@@ -14,6 +14,8 @@ insert_packages(pkgs, repository, archive = TRUE, ...)
 \item{archive}{whether to archive the packages after insertion to prevent duplicates}
 
 \item{...}{parameters passed to `drat::archivePackages`}
+
+\item{os_flavor}{optional os_flavor specification, defaults to NULL unless detected as aarch64}
 }
 \description{
 insert packages into a drat repo
