@@ -16,7 +16,7 @@ Authors@R: c(
     person(given = "Elizabeth",
        family = "Bouton",
        role = c("ctb"),
-       email = "elizabethb@a2-ai.com"),
+       email = "elizabethb@a2-ai.com")
   )
 RoxygenNote: 7.3.2
 Imports: 
