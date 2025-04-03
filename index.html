@@ -49,6 +49,57 @@
 <div class="section level1">
 <div class="page-header"><h1 id="pkgpub">pkgpub<a class="anchor" aria-label="anchor" href="#pkgpub"></a>
 </h1></div>
+<div class="section level2">
+<h2 id="new_cranlike_repo">
+<code>new_cranlike_repo</code><a class="anchor" aria-label="anchor" href="#new_cranlike_repo"></a>
+</h2>
+<p>This function will create the following cran-like repo directory structure used by source and linux types:</p>
+<pre><code>new_cranlike_repo(dir = "&lt;path/to/directory&gt;")
+
+directory
+    |- src
+        |- contrib</code></pre>
+<p>Note: This does not create a mac.binary type structure, but <code>instert_packages</code> can detect if using a mac.binary, and format that folder structure.</p>
+</div>
+<div class="section level2">
+<h2 id="build_pkg">
+<code>build_pkg</code><a class="anchor" aria-label="anchor" href="#build_pkg"></a>
+</h2>
+<p>This function will build a source tarball, as well as another <code>type</code> tarball based on the platform used.</p>
+<pre><code><span><span class="fu"><a href="reference/build_pkg.html">build_pkg</a></span><span class="op">(</span>repository <span class="op">=</span> <span class="st">"&lt;repo&gt;"</span>, remove_remotes <span class="op">=</span> <span class="cn">TRUE</span>, vignettes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">package_version.tar.gz</span>                           <span class="co"># type = source</span></span>
+<span><span class="va">package_version.tgz</span>                              <span class="co"># type = mac.binary</span></span>
+<span><span class="va">package_version_R_x86_64</span><span class="op">-</span><span class="va">pc</span><span class="op">-</span><span class="va">linux</span><span class="op">-</span><span class="va">gnu.tar.gz.</span>    <span class="co"># type = linux</span></span></code></pre>
+<p>Note: If the package has a <code>Remotes</code> field listing packages in the <code>DESCRIPTION</code> file, those packages may need to be installed into the R library to build the tarballs.</p>
+</div>
+<div class="section level2">
+<h2 id="insert_packages">
+<code>insert_packages</code><a class="anchor" aria-label="anchor" href="#insert_packages"></a>
+</h2>
+<p>This function will insert the package tarball into the cran-like repo, overwriting the <code>PACKAGES</code> files, and archiving older package builds. It will detect the type of binary, as well as the OS flavor to create a mac.binary cran-like repo structure.</p>
+<pre><code>insert_packages("&lt;path/to/tarball&gt;", "&lt;path/to/cran-like/directory&gt;", archive = TRUE)
+
+directory
+    |- src
+        |- contrib
+            |- Archive
+                |- package
+                    |- package_old-version.tar.gz
+            |- package_new-version.tar.gz
+            |- PACKAGES
+            |- PACKAGES.gz
+            |- PACKAGES.rds
+    |- bin/macosx/big-sur-arm64/contrib
+        |- R-VERSION
+            |- Archive
+                |- package
+                    |- package_old-version.tgz
+            |- package_new-version.tgz
+            |- PACKAGES
+            |- PACKAGES.gz
+            |- PACKAGES.rds</code></pre>
+</div>
 </div>
 
   </main><aside class="col-md-3"><div class="license">
